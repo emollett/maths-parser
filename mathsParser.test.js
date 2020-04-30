@@ -31,6 +31,10 @@ test('evaluate with correct precedence', () => {
   evaluatedInput = evaluateInput(input2)
   expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(17)
+
+  evaluatedInput = evaluateInput(input3)
+  expect(evaluatedInput.length).toBe(1)
+  expect(evaluatedInput[0]).toBe(14208)
 })
 
 

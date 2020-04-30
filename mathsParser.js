@@ -14,7 +14,9 @@ function evaluateInput(input) {
         if(parsedInput[i] === "a"){
             let sum = addingFunction(parsedInput[i-1], parsedInput[i+1])
             parsedInput.splice(parsedInput[i], 3, sum)
-            i++
+        }else if(parsedInput[i] === "b"){
+            let sum = subtractingFunction(parsedInput[i-1], parsedInput[i+1])
+            parsedInput.splice(parsedInput[i], 3, sum)
         }else{
             i++
         }
@@ -25,21 +27,22 @@ function evaluateInput(input) {
         if(parsedInput[j] === "c"){
             let product = multiplyingFunction(parsedInput[j-1], parsedInput[j+1])
             parsedInput.splice(parsedInput[j], 3, product)
-            j++
         }else if(parsedInput[j] === "d"){
             let product = dividingFunction(parsedInput[j-1], parsedInput[j+1])
             parsedInput.splice(parsedInput[j], 3, product)
-            j++
         }else{
             j++
         }
     };
-
     return parsedInput
 }
 
 function addingFunction(a, b){
     return a+b
+}
+
+function subtractingFunction(a, b){
+    return a-b
 }
 
 function multiplyingFunction(a, b){
