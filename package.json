@@ -1,0 +1,11 @@
+{
+  "name": "maths-parser",
+  "version": "1.0.0",
+  "description":
+    "Solution for dev interview",
+  "main": "mathsParser.js",
+  "author": "Eleanor Mollett",
+  "scripts": {
+    "test": "test"
+  }
+}
