@@ -26,6 +26,10 @@ function evaluateInput(input) {
             let product = multiplyingFunction(parsedInput[j-1], parsedInput[j+1])
             parsedInput.splice(parsedInput[j], 3, product)
             j++
+        }else if(parsedInput[j] === "d"){
+            let product = dividingFunction(parsedInput[j-1], parsedInput[j+1])
+            parsedInput.splice(parsedInput[j], 3, product)
+            j++
         }else{
             j++
         }
@@ -40,6 +44,10 @@ function addingFunction(a, b){
 
 function multiplyingFunction(a, b){
     return a*b
+}
+
+function dividingFunction(a, b){
+    return a/b
 }
 
 module.exports = { parseInput, evaluateInput }
