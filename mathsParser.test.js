@@ -2,7 +2,7 @@ const { parseInput, evaluateInput } = require('./mathsParser');
 
 const input1 = "3a2c4"
 const input2 = "32a2d2"
-const inpute = "32d2a2"
+const inputE = "32d2a2"
 const input3 = "500a10b66c32"
 const input4 = "3ae4c66fb32"
 const input5 = "3c4d2aee2a4c41fc4f"
@@ -33,7 +33,7 @@ test('evaluate with correct precedence', () => {
   expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(17)
 
-  evaluatedInput = evaluateInput(inpute)
+  evaluatedInput = evaluateInput(inputE)
   expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(18)
 

@@ -1,5 +1,5 @@
 # maths-parser
-Solution for dev interview
+Solution for dev interview using Node.js v10.15.0
 
 ## The test
 
