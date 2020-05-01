@@ -1,7 +1,7 @@
 function evaluateInput(input) {
     parsedInput = parseInput(input);
     (parsedInput.includes("e") && (parsedInput = evaluateBrackets(parsedInput)))
-    product = workLeftToRight(parsedInput)
+    product = evaluateArithmetic(parsedInput)
     return product
 }
 
@@ -15,49 +15,35 @@ function parseInput(input) {
   }
 
 function evaluateBrackets(input){
-    everythingInBracket = input.slice(input.indexOf("e")+1, input.lastIndexOf("f"));
-    (everythingInBracket.includes("e") && (everythingInBracket = evaluateBrackets(everythingInBracket)))
-    product = workLeftToRight(everythingInBracket)
+    bracketContents = input.slice(input.indexOf("e")+1, input.lastIndexOf("f"));
+    (bracketContents.includes("e") && (bracketContents = evaluateBrackets(bracketContents)))
+    product = evaluateArithmetic(bracketContents)
     input.splice(input.indexOf("e"), (input.lastIndexOf("f")-input.indexOf("e")+1), product[0])
     return input
 }
 
-function workLeftToRight(input){
+function evaluateArithmetic(input){
     i=0
     while(i<input.length){
-        if(input[i] === "a"){
-            let sum = addingFunction(input[i-1], input[i+1])
-            input.splice(i-1, 3, sum)
-        }else if(input[i] === "b"){
-            let sum = subtractingFunction(input[i-1], input[i+1])
-            input.splice(i-1, 3, sum)
-        }else if(input[i] === "c"){
-            let product = multiplyingFunction(input[i-1], input[i+1])
-            input.splice(i-1, 3, product)
-        }else if(input[i] === "d"){
-            let product = dividingFunction(input[i-1], input[i+1])
-            input.splice(i-1, 3, product)
-        }else{
-            i++
+        let operator = input[i]
+        switch(operator) {
+            case "a":
+                input.splice(i-1, 3, (input[i-1]+input[i+1]))
+                break
+            case "b":
+                input.splice(i-1, 3, (input[i-1]-input[i+1]))
+                break
+            case "c":
+                input.splice(i-1, 3, (input[i-1]*input[i+1]))
+                break
+            case "d":
+                input.splice(i-1, 3, (input[i-1]/input[i+1]))
+                break
+            default:
+                i++
         }
     }
     return input
-}
-
-function addingFunction(a, b){
-    return a+b
-}
-
-function subtractingFunction(a, b){
-    return a-b
-}
-
-function multiplyingFunction(a, b){
-    return a*b
-}
-
-function dividingFunction(a, b){
-    return a/b
 }
 
 module.exports = { parseInput, evaluateInput }
