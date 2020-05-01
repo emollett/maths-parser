@@ -1,3 +1,11 @@
+function evaluateInput(input) {
+    parsedInput = parseInput(input);
+    (parsedInput.includes("e") && (parsedInput = evaluateBrackets(parsedInput)))
+    summedInput = evaluateSummation(parsedInput)
+    product = evaluateProduct(summedInput)
+    return product
+}
+
 function parseInput(input) {
     parsedInput = []
     while(input.length > 0){
@@ -7,34 +15,44 @@ function parseInput(input) {
     return parsedInput
   }
 
-function evaluateInput(input) {
-    parsedInput = parseInput(input);
+function evaluateBrackets(input){
+    everythingInBracket = input.slice(input.indexOf("e")+1, input.indexOf("f"))
+    summedInput = evaluateSummation(everythingInBracket)
+    product = evaluateProduct(summedInput)
+    input.splice(input.indexOf("e"), input.indexOf("f")-1, product[0])
+    return input
+}
+
+function evaluateSummation(input){
     let i=0;
-    while(i<parsedInput.length){
-        if(parsedInput[i] === "a"){
-            let sum = addingFunction(parsedInput[i-1], parsedInput[i+1])
-            parsedInput.splice(parsedInput[i], 3, sum)
-        }else if(parsedInput[i] === "b"){
-            let sum = subtractingFunction(parsedInput[i-1], parsedInput[i+1])
-            parsedInput.splice(parsedInput[i], 3, sum)
+    while(i<input.length){
+        if(input[i] === "a"){
+            let sum = addingFunction(input[i-1], input[i+1])
+            input.splice(input[i], 3, sum)
+        }else if(input[i] === "b"){
+            let sum = subtractingFunction(input[i-1], input[i+1])
+            input.splice(input[i], 3, sum)
         }else{
             i++
         }
     };
+    return input
+}
 
-    let j = 0;
-    while(j<parsedInput.length){
-        if(parsedInput[j] === "c"){
-            let product = multiplyingFunction(parsedInput[j-1], parsedInput[j+1])
-            parsedInput.splice(parsedInput[j], 3, product)
-        }else if(parsedInput[j] === "d"){
-            let product = dividingFunction(parsedInput[j-1], parsedInput[j+1])
-            parsedInput.splice(parsedInput[j], 3, product)
+function evaluateProduct(input){
+    let i = 0;
+    while(i<input.length){
+        if(input[i] === "c"){
+            let product = multiplyingFunction(input[i-1], input[i+1])
+            input.splice(input[i], 3, product)
+        }else if(input[i] === "d"){
+            let product = dividingFunction(input[i-1], input[i+1])
+            input.splice(input[i], 3, product)
         }else{
-            j++
+            i++
         }
     };
-    return parsedInput
+    return input
 }
 
 function addingFunction(a, b){
