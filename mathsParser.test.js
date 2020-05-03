@@ -1,11 +1,21 @@
 const { parseInput, evaluateInput } = require('./mathsParser');
+const readline = require("readline").createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
 
 const input1 = "3a2c4"
 const input2 = "32a2d2"
+//Extra test case added to check order of precedence
 const inputE = "32d2a2"
 const input3 = "500a10b66c32"
 const input4 = "3ae4c66fb32"
 const input5 = "3c4d2aee2a4c41fc4f"
+
+afterAll((done) => {
+  readline.close()
+  done();
+});
 
 test('string is broken in the right places', () => {
   parsedInput = parseInput(input1)

@@ -3,12 +3,16 @@ const readline = require("readline").createInterface({
     output: process.stdout
   })
   
-  readline.question(`Enter string expression to parse `, (string) => {
+readline.question(`Enter string expression to parse `, (string) => {
     product = evaluateInput(string)
     if(product.length != 1){product = "your input was in the wrong format"}
     console.log(`Answer is ${product}`)
     readline.close()
-  })
+})
+
+readline.on("close", function() {
+    process.exit(0);
+});
 
 function evaluateInput(input) {
     parsedInput = parseInput(input);
