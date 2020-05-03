@@ -11,6 +11,8 @@ const inputE = "32d2a2"
 const input3 = "500a10b66c32"
 const input4 = "3ae4c66fb32"
 const input5 = "3c4d2aee2a4c41fc4f"
+//Extra test case added to check serial rather than nested brackets
+const inputE2 = "3c4d2aee2a4c41fc4fce2a2f"
 
 afterAll((done) => {
   readline.close()
@@ -58,6 +60,10 @@ test('evaluate with correct precedence', () => {
   evaluatedInput = evaluateInput(input5)
   expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(990)
+
+  evaluatedInput = evaluateInput(inputE2)
+  expect(evaluatedInput.length).toBe(1)
+  expect(evaluatedInput[0]).toBe(3960)
 })
 
 

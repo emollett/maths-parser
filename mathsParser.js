@@ -15,14 +15,14 @@ readline.on("close", function() {
 });
 
 function evaluateInput(input) {
-    parsedInput = parseInput(input);
+    let parsedInput = parseInput(input);
     (parsedInput.includes("e") && (parsedInput = evaluateBrackets(parsedInput)))
-    product = evaluateArithmetic(parsedInput)
+    let product = evaluateArithmetic(parsedInput)
     return product
 }
 
 function parseInput(input) {
-    parsedInput = []
+    let parsedInput = []
     while(input.length > 0){
         parsedInput.push((parseInt(input, 10) || input[0]))
         input = input.slice(parsedInput[parsedInput.length -1].toString().length)
@@ -31,15 +31,21 @@ function parseInput(input) {
   }
 
 function evaluateBrackets(input){
-    bracketContents = input.slice(input.indexOf("e")+1, input.lastIndexOf("f"));
-    (bracketContents.includes("e") && (bracketContents = evaluateBrackets(bracketContents)))
-    product = evaluateArithmetic(bracketContents)
-    input.splice(input.indexOf("e"), (input.lastIndexOf("f")-input.indexOf("e")+1), product[0])
+    const openingBracket = input.lastIndexOf("e")
+    const closingBracket = (input.slice(openingBracket)).indexOf("f")
+    const bracketContents = input.slice(openingBracket+1, openingBracket+closingBracket);
+    const product = evaluateArithmetic(bracketContents)
+    input.splice(openingBracket, closingBracket+1, product[0])
+
+    if(input.includes("e")){
+        input = evaluateBrackets(input)
+    }
+
     return input
 }
 
 function evaluateArithmetic(input){
-    i=0
+    let i=0
     while(i<input.length){
         let operator = input[i]
         switch(operator) {
