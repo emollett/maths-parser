@@ -1,5 +1,5 @@
 # maths-parser
-Solution for dev interview using Node.js v10.15.0
+Solution for developer interview using Node.js v10.15.0
 
 Run app with ```yarn start```
 
