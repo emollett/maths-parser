@@ -1,3 +1,15 @@
+const readline = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
+  
+  readline.question(`Enter string expression to parse `, (string) => {
+    product = evaluateInput(string)
+    if(product.length != 1){product = "your input was in the wrong format"}
+    console.log(`Answer is ${product}`)
+    readline.close()
+  })
+
 function evaluateInput(input) {
     parsedInput = parseInput(input);
     (parsedInput.includes("e") && (parsedInput = evaluateBrackets(parsedInput)))
