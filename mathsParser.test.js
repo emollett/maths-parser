@@ -1,8 +1,4 @@
 const { parseInput, evaluateInput } = require('./mathsParser');
-const readline = require("readline").createInterface({
-  input: process.stdin,
-  output: process.stdout
-})
 
 const input1 = "3a2c4"
 const input2 = "32a2d2"
@@ -14,11 +10,6 @@ const input5 = "3c4d2aee2a4c41fc4f"
 //Extra test case added to check serial rather than nested brackets
 const inputE2 = "3c4d2aee2a4c41fc4fce2a2f"
 
-afterAll((done) => {
-  readline.close()
-  done();
-});
-
 test("string is broken in the right places", () => {
   parsedInput = parseInput(input5)
   expect(parsedInput.length).toBe(17);
@@ -29,7 +20,7 @@ test("all operators are evaluated", () => {
   expect(evaluatedInput.length).toBe(1)
 });
 
-test("string is evaluated with in the correct order", () => {
+test("string is evaluated in the correct order", () => {
   evaluatedInput = evaluateInput(input1)
   expect(evaluatedInput[0]).toBe(20)
 

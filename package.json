@@ -5,7 +5,7 @@
   "main": "mathsParser.js",
   "author": "Eleanor Mollett",
   "scripts": {
-    "start": "node mathsParser.js",
+    "start": "node interface.js",
     "test": "jest"
   },
   "devDependencies": {
