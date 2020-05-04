@@ -4,6 +4,7 @@
   "description": "Solution for dev interview",
   "main": "mathsParser.js",
   "author": "Eleanor Mollett",
+  "license": "ISC",
   "scripts": {
     "start": "node interface.js",
     "test": "jest"
