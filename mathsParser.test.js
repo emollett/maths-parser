@@ -19,50 +19,36 @@ afterAll((done) => {
   done();
 });
 
-test('string is broken in the right places', () => {
-  parsedInput = parseInput(input1)
-  expect(parsedInput.length).toBe(5);
-
-  parsedInput = parseInput(input2)
-  expect(parsedInput.length).toBe(5);
-
-  parsedInput = parseInput(input3)
-  expect(parsedInput.length).toBe(7);
-
-  parsedInput = parseInput(input4)
-  expect(parsedInput.length).toBe(9);
-
+test("string is broken in the right places", () => {
   parsedInput = parseInput(input5)
   expect(parsedInput.length).toBe(17);
 });
 
-test('evaluate with correct precedence', () => {
-  evaluatedInput = evaluateInput(input1)
+test("all operators are evaluated", () => {
+  evaluatedInput = evaluateInput(input5)
   expect(evaluatedInput.length).toBe(1)
+});
+
+test("string is evaluated with in the correct order", () => {
+  evaluatedInput = evaluateInput(input1)
   expect(evaluatedInput[0]).toBe(20)
 
   evaluatedInput = evaluateInput(input2)
-  expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(17)
 
   evaluatedInput = evaluateInput(inputE)
-  expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(18)
 
   evaluatedInput = evaluateInput(input3)
-  expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(14208)
 
   evaluatedInput = evaluateInput(input4)
-  expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(235)
 
   evaluatedInput = evaluateInput(input5)
-  expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(990)
 
   evaluatedInput = evaluateInput(inputE2)
-  expect(evaluatedInput.length).toBe(1)
   expect(evaluatedInput[0]).toBe(3960)
 })
 
