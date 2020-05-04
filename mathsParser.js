@@ -7,10 +7,18 @@ function evaluateInput(input) {
 
 function parseInput(input) {
     let parsedInput = []
-    while(input.length > 0){
+    if(!input.match(/^\d/)){
+        parsedInput.push("The string needs to start with a number")
+    }else if(input.match(/[g-z]/)){
+        parsedInput.push("You have included unsupported operators")
+    }else if(input.match(/[A-Z]/)){
+        parsedInput.push("Please use lower case characters")
+    }
+    else{    
+        while(input.length > 0){
         parsedInput.push((parseInt(input, 10) || input[0]))
         input = input.slice(parsedInput[parsedInput.length -1].toString().length)
-    }
+    }}
     return parsedInput
   }
 
@@ -25,7 +33,7 @@ function evaluateBrackets(input){
 }
 
 function evaluateArithmetic(input){
-    let i=1
+    let i=0
     while(i<input.length){
         const operator = input[i]
         switch(operator) {
