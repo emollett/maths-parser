@@ -1,7 +1,7 @@
 function evaluateInput(input) {
-    let parsedInput = parseInput(input);
-    (parsedInput.includes("e") && parsedInput.includes("f")) && (parsedInput = evaluateBrackets(parsedInput))
-    const product = evaluateArithmetic(parsedInput)
+    const parsedInput = parseInput(input);
+    const bracketsRemoved = evaluateBrackets(parsedInput)
+    const product = evaluateArithmetic(bracketsRemoved)
     return product
 }
 
@@ -23,12 +23,18 @@ function parseInput(input) {
   }
 
 function evaluateBrackets(input){
-    const openingBracket = input.lastIndexOf("e")
-    const closingBracket = (input.slice(openingBracket)).indexOf("f")
-    const bracketContents = input.slice(openingBracket+1, openingBracket+closingBracket)
-    const product = evaluateArithmetic(bracketContents)
-    input.splice(openingBracket, closingBracket+1, product[0]);
-    (input.includes("e") && input.includes("f")) && (input = evaluateBrackets(input))
+    if(input.includes("e") && !input.includes("f")){
+        input.splice(0, input.length, "Input has an unmatched opening bracket")
+    }else if(!input.includes("e") && input.includes("f")){
+        input.splice(0, input.length, "Input has an unmatched closing bracket")
+    }else if(input.includes("e") && input.includes("f")){
+        const openingBracket = input.lastIndexOf("e")
+        const closingBracket = (input.slice(openingBracket)).indexOf("f")
+        const bracketContents = input.slice(openingBracket+1, openingBracket+closingBracket)
+        const product = evaluateArithmetic(bracketContents)
+        input.splice(openingBracket, closingBracket+1, product[0])
+        input = evaluateBrackets(input)
+    }
     return input
 }
 
@@ -56,4 +62,4 @@ function evaluateArithmetic(input){
     return input
 }
 
-module.exports = { parseInput, evaluateInput }
+module.exports = { parseInput, evaluateInput, evaluateBrackets, evaluateArithmetic }
