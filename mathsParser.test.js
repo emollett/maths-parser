@@ -13,7 +13,10 @@ test("string is broken in the right places", () => {
 
 test("unsupported inputs return a message", () => {
   parsedInput = parseInput("a3a2c4")
-  expect(parsedInput[0]).toBe("The string needs to start with a number");
+  expect(parsedInput[0]).toBe("The string needs to start with a number or opening bracket");
+
+  parsedInput = parseInput("3a2c4a")
+  expect(parsedInput[0]).toBe("The string needs to end with a number or closing bracket");
 
   parsedInput = parseInput("3a2j4")
   expect(parsedInput[0]).toBe("You have included unsupported operators");
@@ -51,7 +54,7 @@ test("brackets are identified and evaluated", () => {
 
   //unmatched closing bracket
   evaluatedBrackets = evaluateBrackets(parseInput("3c4d2ae2a4c41fc4fce2a2f"))
-  expect(evaluatedBrackets[0]]).toBe("Input has an unmatched closing bracket")
+  expect(evaluatedBrackets[0]).toBe("Input has an unmatched closing bracket")
 });
 
 test("input string is parsed and evaluated in the correct order", () => {

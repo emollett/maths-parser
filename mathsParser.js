@@ -7,8 +7,10 @@ function evaluateInput(input) {
 
 function parseInput(input) {
     let parsedInput = []
-    if(!input.match(/^\d/)){
-        parsedInput.push("The string needs to start with a number")
+    if(!input.match(/^[e\d]/)){
+        parsedInput.push("The string needs to start with a number or opening bracket")
+    }else if(!input.match(/[f\d]$/)){
+        parsedInput.push("The string needs to end with a number or closing bracket")
     }else if(input.match(/[g-z]/)){
         parsedInput.push("You have included unsupported operators")
     }else if(input.match(/[A-Z]/)){
