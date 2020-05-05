@@ -11,13 +11,15 @@ test("string is broken in the right places", () => {
   expect(parsedInput.length).toBe(17);
 });
 
-test("unsupported inputs return a message", () => {
+test("inputs must start and end with numbers or correct brackets", () => {
   parsedInput = parseInput("a3a2c4")
   expect(parsedInput[0]).toBe("The string needs to start with a number or opening bracket");
 
   parsedInput = parseInput("3a2c4a")
   expect(parsedInput[0]).toBe("The string needs to end with a number or closing bracket");
+});
 
+test("only the operators a, b, c, d, e, and f are supported", () => {
   parsedInput = parseInput("3a2j4")
   expect(parsedInput[0]).toBe("You have included unsupported operators");
 
@@ -25,12 +27,12 @@ test("unsupported inputs return a message", () => {
   expect(parsedInput[0]).toBe("Please use lower case characters");
 });
 
-test("all operators are evaluated, left to right", () => {
-  //all operators
+test("all operators are evaluated", () => {
   evaluatedInput = evaluateArithmetic(parseInput("2a4b2c3d4"))
   expect(evaluatedInput[0]).toBe(3)
+});
 
-  //precedence is left to right
+test("operators are evaluated with left to right precedence", () => {
   evaluatedInput = evaluateArithmetic(parseInput("32d2a2"))
   expect(evaluatedInput[0]).toBe(18)
 });
